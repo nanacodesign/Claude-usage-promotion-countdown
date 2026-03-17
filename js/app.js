@@ -34,6 +34,14 @@
     const bottom = piece.querySelector('.clock__card-bottom');
     const back = piece.querySelector('.clock__card-back');
     const backBottom = piece.querySelector('.clock__card-back-bottom');
+
+    // Toggle robot character when value is 00
+    if (paddedValue === '00') {
+      piece.classList.add('clock__piece--robot');
+    } else {
+      piece.classList.remove('clock__piece--robot');
+    }
+
     if (top.textContent === paddedValue) return;
     back.setAttribute('data-value', top.textContent);
     backBottom.setAttribute('data-value', top.textContent);
@@ -152,10 +160,10 @@
 
     if (newState === 'on') {
       statusBadge.textContent = 'ON';
-      subtitle.textContent = 'Keep building for';
+      subtitle.textContent = 'keep building for';
     } else if (newState === 'off') {
       statusBadge.textContent = 'OFF';
-      subtitle.textContent = 'Next doubles window is...';
+      subtitle.textContent = 'doubles back in';
     } else {
       statusBadge.textContent = 'OFF';
       subtitle.textContent = 'The promotion has ended';

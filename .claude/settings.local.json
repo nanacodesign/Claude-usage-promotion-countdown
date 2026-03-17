@@ -25,7 +25,10 @@
       "Bash(npx sass:*)",
       "Bash(open:*)",
       "Bash(gh release:*)",
-      "Bash(gh api:*)"
+      "Bash(gh api:*)",
+      "WebFetch(domain:localhost)",
+      "Bash(curl:*)",
+      "Bash(npx live-server:*)"
     ]
   }
 }
