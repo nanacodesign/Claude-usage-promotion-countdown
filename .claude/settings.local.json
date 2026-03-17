@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.figma.com)",
+      "WebFetch(domain:codepen.io)",
+      "WebFetch(domain:cdpn.io)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(sass scss/style.scss css/style.css)",
+      "Bash(npx --yes sass --version)",
+      "Bash(npx --yes sass scss/style.scss css/style.css)",
+      "WebSearch",
+      "WebFetch(domain:help.figma.com)",
+      "Bash(npm list:*)",
+      "Bash(npm install:*)",
+      "Bash(sudo chown:*)",
+      "Bash(claude mcp:*)",
+      "Bash(source ~/.zshrc)",
+      "Bash(python3 -m json.tool)",
+      "Bash(echo $FIGMA_TOKEN)",
+      "Bash(npx figma-mcp-server:*)",
+      "Bash(npm search:*)",
+      "WebFetch(domain:developers.figma.com)",
+      "mcp__figma-desktop__get_design_context",
+      "mcp__figma-desktop__get_screenshot",
+      "Bash(npx sass:*)",
+      "Bash(open:*)",
+      "Bash(gh release:*)",
+      "Bash(gh api:*)"
+    ]
+  }
+}
