@@ -7,9 +7,9 @@
 
   const subtitle = document.getElementById('subtitle');
   const statusBadge = document.getElementById('statusBadge');
-  const hoursEl = document.getElementById('hours').querySelector('.clock__digits');
-  const minutesEl = document.getElementById('minutes').querySelector('.clock__digits');
-  const secondsEl = document.getElementById('seconds').querySelector('.clock__digits');
+  const hoursPiece = document.getElementById('hours');
+  const minutesPiece = document.getElementById('minutes');
+  const secondsPiece = document.getElementById('seconds');
   const daysLeftEl = document.getElementById('daysLeft');
   const barSegments = document.getElementById('barSegments');
   const usageTime = document.getElementById('usageTime');
@@ -17,6 +17,33 @@
 
   let currentState = null;
   let intervalId = null;
+
+  function pad(val) {
+    return (val < 10 && val > -1 ? '0' : '') + val;
+  }
+
+  function flipTo(piece, newValue) {
+    const paddedValue = pad(newValue);
+    const top = piece.querySelector('.clock__card-top');
+    const bottom = piece.querySelector('.clock__card-bottom');
+    const back = piece.querySelector('.clock__card-back');
+    const backBottom = piece.querySelector('.clock__card-back-bottom');
+
+    if (top.textContent === paddedValue) return;
+
+    // Set previous value on back elements
+    back.setAttribute('data-value', top.textContent);
+    backBottom.setAttribute('data-value', top.textContent);
+
+    // Set new value
+    top.textContent = paddedValue;
+    bottom.setAttribute('data-value', paddedValue);
+
+    // Trigger flip animation
+    piece.classList.remove('flip');
+    void piece.offsetWidth;
+    piece.classList.add('flip');
+  }
 
   function determineState() {
     const now = new Date();
@@ -85,10 +112,10 @@
 
     if (newState === 'on') {
       statusBadge.textContent = 'ON';
-      subtitle.textContent = 'Enjoy!';
+      subtitle.textContent = 'Enjoy building.';
     } else if (newState === 'off') {
       statusBadge.textContent = 'OFF';
-      subtitle.textContent = 'Doubles usage returns...';
+      subtitle.textContent = 'Next doubles window is...';
     } else {
       statusBadge.textContent = 'OFF';
       subtitle.textContent = 'The promotion has ended';
@@ -101,9 +128,9 @@
     updateProgressBar();
 
     if (state === 'expired') {
-      hoursEl.textContent = '00';
-      minutesEl.textContent = '00';
-      secondsEl.textContent = '00';
+      flipTo(hoursPiece, 0);
+      flipTo(minutesPiece, 0);
+      flipTo(secondsPiece, 0);
       if (intervalId) {
         clearInterval(intervalId);
         intervalId = null;
@@ -120,9 +147,9 @@
     const minutes = Math.floor(diff / 60);
     const seconds = diff % 60;
 
-    hoursEl.textContent = String(hours).padStart(2, '0');
-    minutesEl.textContent = String(minutes).padStart(2, '0');
-    secondsEl.textContent = String(seconds).padStart(2, '0');
+    flipTo(hoursPiece, hours);
+    flipTo(minutesPiece, minutes);
+    flipTo(secondsPiece, seconds);
   }
 
   function fetchStarCount() {

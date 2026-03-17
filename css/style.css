@@ -118,6 +118,22 @@ body {
   border: 3px solid #d7785b;
 }
 
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.state-on .title__logo {
+  animation: spin 8s linear infinite;
+}
+
+.state-off .title__logo {
+  animation: none;
+}
+
 .subtitle {
   font-size: 24px;
   font-weight: 400;
@@ -134,51 +150,92 @@ body {
   display: flex;
   align-items: center;
   gap: 16px;
+  perspective: 600px;
 }
 @media (max-width: 768px) {
   .clock {
     gap: 10px;
   }
 }
-.clock__number {
-  background: #51514c;
-  border-radius: 32px;
-  padding: 48px 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 150px;
+.clock__piece {
+  display: inline-block;
 }
-@media (max-width: 768px) {
-  .clock__number {
-    border-radius: 20px;
-    padding: 24px 12px;
-    min-width: 90px;
-  }
-}
-@media (max-width: 480px) {
-  .clock__number {
-    border-radius: 16px;
-    padding: 16px 8px;
-    min-width: 70px;
-  }
-}
-.clock__digits {
-  font-family: "Bebas Neue", cursive;
+.clock__card {
+  display: block;
+  position: relative;
+  padding-bottom: 0.72em;
   font-size: 160px;
-  line-height: 1.6;
-  color: white;
+  line-height: 0.95;
+  font-family: "Bebas Neue", cursive;
   font-style: normal;
+  text-align: center;
 }
 @media (max-width: 768px) {
-  .clock__digits {
+  .clock__card {
     font-size: 80px;
   }
 }
 @media (max-width: 480px) {
-  .clock__digits {
+  .clock__card {
     font-size: 48px;
   }
+}
+.clock__card-top, .clock__card-bottom, .clock__card-back-bottom, .clock__card-back::before, .clock__card-back::after {
+  display: block;
+  height: 0.72em;
+  color: rgba(255, 255, 255, 0.8);
+  background: #51514c;
+  padding: 0.23em 0.15em 0.4em;
+  border-radius: 0.15em 0.15em 0 0;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  width: 1.5em;
+  overflow: hidden;
+}
+.clock__card-bottom, .clock__card-back-bottom {
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  border-top: solid 1px rgba(0, 0, 0, 0.4);
+  background: #474743;
+  border-radius: 0 0 0.15em 0.15em;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 2;
+}
+.clock__card-back-bottom {
+  z-index: 1;
+}
+.clock__card-bottom::after, .clock__card-back-bottom::after {
+  display: block;
+  margin-top: -0.72em;
+}
+.clock__card-back::before, .clock__card-bottom::after, .clock__card-back-bottom::after {
+  content: attr(data-value);
+}
+.clock__card-back {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  left: 0;
+  pointer-events: none;
+}
+.clock__card-back::before {
+  position: relative;
+  overflow: hidden;
+  z-index: -1;
+}
+.clock__piece.flip .clock__card-back::before {
+  z-index: 1;
+  animation: flipTop 0.3s cubic-bezier(0.37, 0.01, 0.94, 0.35);
+  animation-fill-mode: both;
+  transform-origin: center bottom;
+}
+.clock__piece.flip .clock__card-bottom {
+  transform-origin: center top;
+  animation-fill-mode: both;
+  animation: flipBottom 0.6s cubic-bezier(0.15, 0.45, 0.28, 1);
 }
 .clock__divider {
   display: flex;
@@ -355,3 +412,34 @@ body {
   width: 23px;
   height: 23px;
 }
+
+@keyframes flipTop {
+  0% {
+    transform: rotateX(0deg);
+    z-index: 2;
+  }
+  0%, 99% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotateX(-90deg);
+    opacity: 0;
+  }
+}
+@keyframes flipBottom {
+  0%, 50% {
+    z-index: -1;
+    transform: rotateX(90deg);
+    opacity: 0;
+  }
+  51% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: rotateX(0deg);
+    z-index: 5;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */

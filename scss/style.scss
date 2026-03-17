@@ -128,6 +128,20 @@ body {
   border: 3px solid $accent;
 }
 
+// Logo spin for State A
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.state-on .title__logo {
+  animation: spin 8s linear infinite;
+}
+
+.state-off .title__logo {
+  animation: none;
+}
+
 // Subtitle
 .subtitle {
   font-size: 24px;
@@ -141,43 +155,33 @@ body {
 }
 
 // Clock
+$flip-half: 0.72em;
+$flip-radius: 0.15em;
+$card-bg-bottom: #474743;
+
 .clock {
   display: flex;
   align-items: center;
   gap: 16px;
+  perspective: 600px;
 
   @media (max-width: 768px) {
     gap: 10px;
   }
 
-  &__number {
-    background: $card-bg;
-    border-radius: 32px;
-    padding: 48px 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 150px;
-
-    @media (max-width: 768px) {
-      border-radius: 20px;
-      padding: 24px 12px;
-      min-width: 90px;
-    }
-
-    @media (max-width: 480px) {
-      border-radius: 16px;
-      padding: 16px 8px;
-      min-width: 70px;
-    }
+  &__piece {
+    display: inline-block;
   }
 
-  &__digits {
-    font-family: $font-display;
+  &__card {
+    display: block;
+    position: relative;
+    padding-bottom: $flip-half;
     font-size: 160px;
-    line-height: 1.6;
-    color: white;
+    line-height: 0.95;
+    font-family: $font-display;
     font-style: normal;
+    text-align: center;
 
     @media (max-width: 768px) {
       font-size: 80px;
@@ -186,6 +190,86 @@ body {
     @media (max-width: 480px) {
       font-size: 48px;
     }
+  }
+
+  // Shared styles for all card faces
+  &__card-top,
+  &__card-bottom,
+  &__card-back-bottom,
+  &__card-back::before,
+  &__card-back::after {
+    display: block;
+    height: $flip-half;
+    color: rgba(white, 0.8);
+    background: $card-bg;
+    padding: 0.23em 0.15em 0.4em;
+    border-radius: $flip-radius $flip-radius 0 0;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    width: 1.5em;
+    overflow: hidden;
+  }
+
+  // Bottom halves
+  &__card-bottom,
+  &__card-back-bottom {
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    border-top: solid 1px rgba(0, 0, 0, 0.4);
+    background: $card-bg-bottom;
+    border-radius: 0 0 $flip-radius $flip-radius;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 2;
+  }
+
+  &__card-back-bottom {
+    z-index: 1;
+  }
+
+  // Shift text up to show bottom half
+  &__card-bottom::after,
+  &__card-back-bottom::after {
+    display: block;
+    margin-top: -$flip-half;
+  }
+
+  // Content via data attributes
+  &__card-back::before,
+  &__card-bottom::after,
+  &__card-back-bottom::after {
+    content: attr(data-value);
+  }
+
+  // Back layer (previous value, top half)
+  &__card-back {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    left: 0;
+    pointer-events: none;
+  }
+
+  &__card-back::before {
+    position: relative;
+    overflow: hidden;
+    z-index: -1;
+  }
+
+  // Flip animations triggered by .flip class on .clock__piece
+  &__piece.flip &__card-back::before {
+    z-index: 1;
+    animation: flipTop 0.3s cubic-bezier(.37, .01, .94, .35);
+    animation-fill-mode: both;
+    transform-origin: center bottom;
+  }
+
+  &__piece.flip &__card-bottom {
+    transform-origin: center top;
+    animation-fill-mode: both;
+    animation: flipBottom 0.6s cubic-bezier(.15, .45, .28, 1);
   }
 
   &__divider {
@@ -376,5 +460,36 @@ body {
       width: 23px;
       height: 23px;
     }
+  }
+}
+
+// Flip keyframes
+@keyframes flipTop {
+  0% {
+    transform: rotateX(0deg);
+    z-index: 2;
+  }
+  0%, 99% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotateX(-90deg);
+    opacity: 0;
+  }
+}
+
+@keyframes flipBottom {
+  0%, 50% {
+    z-index: -1;
+    transform: rotateX(90deg);
+    opacity: 0;
+  }
+  51% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: rotateX(0deg);
+    z-index: 5;
   }
 }
