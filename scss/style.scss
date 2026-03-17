@@ -1,0 +1,380 @@
+// Design tokens from Figma
+$bg: #262624;
+$card-bg: #51514c;
+$text: #d9d9d9;
+$accent: #d7785b;
+$font-display: 'Bebas Neue', cursive;
+$font-body: 'Roboto Mono', monospace;
+
+// Reset
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: $font-body;
+  background-color: $bg;
+  color: $text;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow: hidden;
+}
+
+// Layout
+.layout {
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 80px;
+  max-width: 771px;
+  width: 100%;
+  padding: 0 24px;
+
+  @media (max-width: 768px) {
+    gap: 40px;
+  }
+}
+
+// Title
+.title {
+  display: flex;
+  align-items: flex-end;
+  gap: 24px;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  &__left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  &__logo {
+    width: 41px;
+    height: 39px;
+    flex-shrink: 0;
+    color: $accent;
+  }
+
+  &__text {
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 1.6;
+    white-space: nowrap;
+
+    @media (max-width: 768px) {
+      font-size: 24px;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 18px;
+    }
+  }
+
+  &__badge {
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 1.6;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 24px;
+    border-radius: 8px;
+    white-space: nowrap;
+    transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+
+    @media (max-width: 768px) {
+      font-size: 24px;
+      height: 40px;
+      padding: 8px 16px;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 18px;
+      height: 32px;
+      padding: 6px 12px;
+    }
+  }
+}
+
+// Badge states
+.state-on .title__badge {
+  background-color: $accent;
+  color: $bg;
+  border: 3px solid $accent;
+}
+
+.state-off .title__badge {
+  background-color: transparent;
+  color: $accent;
+  border: 3px solid $accent;
+}
+
+// Subtitle
+.subtitle {
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.6;
+  text-align: center;
+
+  @media (max-width: 768px) {
+    font-size: 18px;
+  }
+}
+
+// Clock
+.clock {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  @media (max-width: 768px) {
+    gap: 10px;
+  }
+
+  &__number {
+    background: $card-bg;
+    border-radius: 32px;
+    padding: 48px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 150px;
+
+    @media (max-width: 768px) {
+      border-radius: 20px;
+      padding: 24px 12px;
+      min-width: 90px;
+    }
+
+    @media (max-width: 480px) {
+      border-radius: 16px;
+      padding: 16px 8px;
+      min-width: 70px;
+    }
+  }
+
+  &__digits {
+    font-family: $font-display;
+    font-size: 160px;
+    line-height: 1.6;
+    color: white;
+    font-style: normal;
+
+    @media (max-width: 768px) {
+      font-size: 80px;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 48px;
+    }
+  }
+
+  &__divider {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+
+    @media (max-width: 768px) {
+      gap: 10px;
+    }
+  }
+
+  &__dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: $text;
+
+    @media (max-width: 768px) {
+      width: 10px;
+      height: 10px;
+    }
+  }
+}
+
+// Progress bar
+.bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+
+  &__label {
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1.6;
+    text-align: center;
+
+    @media (max-width: 768px) {
+      font-size: 18px;
+    }
+  }
+
+  &__segments {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+  }
+
+  &__segment {
+    width: 20px;
+    height: 40px;
+    flex-shrink: 0;
+    transition: background-color 0.3s ease;
+
+    &--active {
+      background-color: $accent;
+    }
+
+    &--inactive {
+      background-color: $text;
+    }
+
+    @media (max-width: 480px) {
+      width: 14px;
+      height: 28px;
+    }
+  }
+}
+
+// Usage time
+.usage-time {
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.6;
+  text-align: center;
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
+}
+
+// Bottom bar
+.bottom {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  right: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  @media (max-width: 768px) {
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+// Star
+.star {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  &__button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px 8px 8px;
+    border: 1px solid white;
+    border-radius: 4px;
+    text-decoration: none;
+    color: white;
+    font-family: $font-body;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background: rgba(white, 0.1);
+    }
+  }
+
+  &__icon {
+    font-size: 14px;
+  }
+
+  &__label {
+    font-size: 14px;
+  }
+
+  &__text {
+    font-size: 18px;
+    color: $text;
+
+    @media (max-width: 480px) {
+      font-size: 14px;
+    }
+  }
+
+  &__count {
+    font-size: 14px;
+    color: $text;
+    opacity: 0.6;
+
+    &:not(:empty)::before {
+      content: '\2022';
+      margin-right: 0.4rem;
+    }
+  }
+}
+
+// Nana
+.nana {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  &__text {
+    font-size: 18px;
+    color: $text;
+
+    @media (max-width: 480px) {
+      font-size: 14px;
+    }
+  }
+
+  &__social {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    color: $text;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: white;
+    }
+
+    svg {
+      width: 23px;
+      height: 23px;
+    }
+  }
+}

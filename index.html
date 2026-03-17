@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claude Doubles Usage Countdown</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="layout">
+    <div class="content">
+      <div class="title">
+        <div class="title__left">
+          <svg class="title__logo" width="41" height="39" viewBox="0 0 41 39" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Claude logo">
+            <path d="M20.5 0L23.2 13.6L33 4L26.4 16.8L40 19.5L26.4 22.2L33 35L23.2 25.9L20.5 39L17.8 25.9L8 35L14.6 22.2L1 19.5L14.6 16.8L8 4L17.8 13.6L20.5 0Z" fill="currentColor"/>
+          </svg>
+          <span class="title__text">Claude doubles usage</span>
+        </div>
+        <div class="title__badge" id="statusBadge">ON</div>
+      </div>
+
+      <p class="subtitle" id="subtitle">Enjoy!</p>
+
+      <div class="clock" id="countdown">
+        <div class="clock__number" id="hours">
+          <span class="clock__digits">00</span>
+        </div>
+        <div class="clock__divider">
+          <span class="clock__dot"></span>
+          <span class="clock__dot"></span>
+        </div>
+        <div class="clock__number" id="minutes">
+          <span class="clock__digits">00</span>
+        </div>
+        <div class="clock__divider">
+          <span class="clock__dot"></span>
+          <span class="clock__dot"></span>
+        </div>
+        <div class="clock__number" id="seconds">
+          <span class="clock__digits">00</span>
+        </div>
+      </div>
+
+      <div class="bar" id="progressBar">
+        <p class="bar__label" id="daysLeft">11 days left</p>
+        <div class="bar__segments" id="barSegments"></div>
+      </div>
+
+      <p class="usage-time" id="usageTime">your doubles usage: __ am to __ pm</p>
+    </div>
+
+    <div class="bottom">
+      <div class="star">
+        <a class="star__button" href="https://github.com/nanacodesign/Claude-usage-promotion-countdown" target="_blank" rel="noopener">
+          <span class="star__icon">&#9733;</span>
+          <span class="star__label">Star</span>
+        </a>
+        <span class="star__text">your star means a lot</span>
+        <span class="star__count" id="starCount"></span>
+      </div>
+      <div class="nana">
+        <span class="nana__text">made by nana</span>
+        <a class="nana__social" href="https://www.linkedin.com/in/nanacodesign/" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg width="23" height="23" viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M27.26 27.271h-4.733v-7.427c0-1.77-.036-4.047-2.467-4.047-2.47 0-2.847 1.926-2.847 3.918v7.556h-4.733V12.001h4.545v2.083h.063c.632-1.2 2.18-2.467 4.487-2.467 4.8 0 5.685 3.16 5.685 7.269v8.385zM7.116 9.912a2.745 2.745 0 1 1 0-5.49 2.745 2.745 0 0 1 0 5.49zm2.372 17.36H4.744V12h4.744v15.27z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
