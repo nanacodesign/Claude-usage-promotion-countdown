@@ -4,7 +4,7 @@
   // End:   March 28 23:59:59 PT = March 29 06:59:59 UTC
   const PROMO_START = new Date(Date.UTC(2026, 2, 13, 7, 0, 0));
   const PROMO_END = new Date(Date.UTC(2026, 2, 29, 6, 59, 59));
-  const TOTAL_BARS = 14;
+  const TOTAL_BARS = 15;
 
   // Peak hours: 8 AM – 2 PM ET (EDT = UTC-4) on weekdays
   // Doubles usage is active OUTSIDE these hours + all day weekends
@@ -135,7 +135,7 @@
   function formatHour(h) {
     const period = h >= 12 ? 'pm' : 'am';
     const hour12 = h % 12 || 12;
-    return `${hour12}${period}`;
+    return `${hour12} ${period}`;
   }
 
   function updateUsageTime() {
@@ -150,7 +150,7 @@
     const activeFrom = formatHour(peakEnd.getHours());   // doubles start when peak ends
     const activeUntil = formatHour(peakStart.getHours()); // doubles stop when peak starts
 
-    usageTime.textContent = `your doubles usage: ${activeFrom} – ${activeUntil} weekdays • all weekend`;
+    usageTime.textContent = `doubles usage limits: ${activeFrom} to ${activeUntil}`;
   }
 
   function applyState(newState) {

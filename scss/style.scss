@@ -36,6 +36,12 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    gap: 60px;
+    overflow: hidden;
+  }
 }
 
 .content {
@@ -48,6 +54,10 @@ body {
   padding: 0 24px;
 
   @media (max-width: 768px) {
+    gap: 30px;
+  }
+
+  @media (max-width: 480px) {
     gap: 40px;
   }
 }
@@ -61,6 +71,13 @@ body {
   white-space: nowrap;
   width: max-content;
   max-width: none;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+  }
 
   &__left {
     display: flex;
@@ -86,7 +103,7 @@ body {
     }
 
     @media (max-width: 480px) {
-      font-size: 18px;
+      font-size: 20px;
     }
   }
 
@@ -111,8 +128,8 @@ body {
 
     @media (max-width: 480px) {
       font-size: 18px;
-      height: 32px;
-      padding: 6px 12px;
+      height: auto;
+      padding: 4px 12px;
     }
   }
 }
@@ -171,6 +188,10 @@ body {
   @media (max-width: 768px) {
     font-size: 18px;
   }
+
+  @media (max-width: 480px) {
+    font-size: 20px;
+  }
 }
 
 // Clock
@@ -208,7 +229,7 @@ $card-bg-bottom: #51514c;
     }
 
     @media (max-width: 480px) {
-      font-size: 48px;
+      font-size: 108px;
     }
   }
 
@@ -372,6 +393,10 @@ $card-bg-bottom: #51514c;
   gap: 24px;
   width: 100%;
 
+  @media (max-width: 480px) {
+    gap: 16px;
+  }
+
   &__label {
     font-size: 24px;
     font-weight: 400;
@@ -381,6 +406,10 @@ $card-bg-bottom: #51514c;
     @media (max-width: 768px) {
       font-size: 18px;
     }
+
+    @media (max-width: 480px) {
+      font-size: 14px;
+    }
   }
 
   &__segments {
@@ -388,6 +417,10 @@ $card-bg-bottom: #51514c;
     flex-wrap: wrap;
     gap: 8px;
     justify-content: center;
+
+    @media (max-width: 480px) {
+      gap: 5px;
+    }
   }
 
   &__segment {
@@ -405,8 +438,8 @@ $card-bg-bottom: #51514c;
     }
 
     @media (max-width: 480px) {
-      width: 14px;
-      height: 28px;
+      width: 12px;
+      height: 24px;
     }
   }
 }
@@ -424,7 +457,8 @@ $card-bg-bottom: #51514c;
   }
 
   @media (max-width: 480px) {
-    font-size: 12px;
+    font-size: 14px;
+    white-space: normal;
   }
 }
 
@@ -445,6 +479,13 @@ $card-bg-bottom: #51514c;
     flex-direction: column;
     gap: 16px;
   }
+
+  @media (max-width: 480px) {
+    position: static;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
 }
 
 // Star
@@ -452,6 +493,11 @@ $card-bg-bottom: #51514c;
   display: flex;
   align-items: center;
   gap: 16px;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    align-items: center;
+  }
 
   &__button {
     display: flex;
@@ -487,7 +533,8 @@ $card-bg-bottom: #51514c;
     color: $text;
 
     @media (max-width: 480px) {
-      font-size: 14px;
+      font-size: 16px;
+      text-align: center;
     }
   }
 
@@ -499,6 +546,10 @@ $card-bg-bottom: #51514c;
     &:not(:empty)::before {
       content: '\2022';
       margin-right: 0.4rem;
+    }
+
+    @media (max-width: 480px) {
+      display: none;
     }
   }
 }
@@ -566,5 +617,175 @@ $card-bg-bottom: #51514c;
     opacity: 1;
     transform: rotateX(0deg);
     z-index: 5;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .layout {
+    height: auto;
+    min-height: 100vh;
+    min-height: 100dvh;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 96px;
+    padding: 48px 24px 32px;
+    overflow: visible;
+  }
+
+  .content {
+    width: 100%;
+    max-width: 342px;
+    padding: 0;
+    gap: 0;
+  }
+
+  .title {
+    margin-bottom: 64px;
+  }
+
+  .title__left {
+    gap: 12px;
+    max-width: 100%;
+  }
+
+  .title__logo {
+    width: 34px;
+    height: 32px;
+  }
+
+  .title__text {
+    font-size: 18px;
+  }
+
+  .subtitle {
+    margin-bottom: 24px;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+
+  .clock {
+    width: fit-content;
+    max-width: 100%;
+    justify-content: center;
+    gap: 8px;
+    margin: 0 auto 64px;
+  }
+
+  .clock__card {
+    width: auto;
+    min-width: 0;
+    height: 160px;
+    padding: 0 9px;
+    font-size: 98px;
+    line-height: 1;
+    background: $card-bg-bottom;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .clock__card-top {
+    width: auto;
+    height: auto;
+    padding: 0;
+    border-radius: 0;
+    background: none;
+    color: white;
+    line-height: 0.82;
+    overflow: visible;
+  }
+
+  .clock__card-bottom,
+  .clock__card-back,
+  .clock__card-back-bottom {
+    display: none;
+  }
+
+  .clock__divider {
+    gap: 9px;
+  }
+
+  .clock__dot {
+    width: 10px;
+    height: 10px;
+  }
+
+  .clock__piece--robot .clock__card {
+    visibility: visible;
+  }
+
+  .clock__piece--robot .clock__robot {
+    display: none;
+  }
+
+  .bar {
+    gap: 16px;
+    margin-bottom: 64px;
+  }
+
+  .bar__label {
+    font-size: 18px;
+  }
+
+  .bar__segments {
+    gap: 5px;
+    max-width: 100%;
+  }
+
+  .bar__segment {
+    width: 12px;
+    height: 24px;
+  }
+
+  .usage-time {
+    max-width: 310px;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+
+  .bottom {
+    position: static;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    width: 100%;
+    max-width: 342px;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .star {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .star__button {
+    border-radius: 4px;
+    font-size: 18px;
+  }
+
+  .star__icon {
+    font-size: 18px;
+  }
+
+  .star__text,
+  .nana__text {
+    font-size: 18px;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .nana {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 16px;
   }
 }
