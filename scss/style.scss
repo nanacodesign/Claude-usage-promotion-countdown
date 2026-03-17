@@ -1,6 +1,6 @@
 // Design tokens from Figma
 $bg: #262624;
-$card-bg: #51514c;
+$card-bg: #474743;
 $text: #d9d9d9;
 $accent: #d7785b;
 $font-display: 'Bebas Neue', cursive;
@@ -157,7 +157,7 @@ body {
 // Clock
 $flip-half: 0.72em;
 $flip-radius: 0.15em;
-$card-bg-bottom: #474743;
+$card-bg-bottom: #51514c;
 
 .clock {
   display: flex;
@@ -349,9 +349,14 @@ $card-bg-bottom: #474743;
   font-weight: 400;
   line-height: 1.6;
   text-align: center;
+  white-space: nowrap;
 
   @media (max-width: 768px) {
     font-size: 16px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 12px;
   }
 }
 
@@ -400,7 +405,7 @@ $card-bg-bottom: #474743;
   }
 
   &__icon {
-    font-size: 14px;
+    font-size: 20px;
   }
 
   &__label {
